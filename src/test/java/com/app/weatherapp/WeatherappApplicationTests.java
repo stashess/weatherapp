@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,6 +18,7 @@ import java.net.HttpURLConnection;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
+@TestPropertySource(properties = "app.scheduling.enable=false")
 @SpringBootTest
 public class WeatherappApplicationTests {
 
@@ -33,6 +35,9 @@ public class WeatherappApplicationTests {
     @Test
     public void testApiAvaible(){
         assertEquals(HttpStatus.OK,weatherApiClient.getCurrentWeatherDataResponseEntity().getStatusCode());
+        System.out.println("Competed");
     }
+
+
 
 }

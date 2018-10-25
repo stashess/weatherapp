@@ -1,6 +1,7 @@
 package com.app.weatherapp.controller;
 
 import com.app.weatherapp.model.dto.WeatherDto;
+import com.app.weatherapp.model.util.WeatherUtil;
 import com.app.weatherapp.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +22,10 @@ public class WeatherController {
         this.weatherService = weatherService;
     }
 
-    //@todo add methods
-    /*@RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public Collection<WeatherDto> getWeatherByData(
-            @RequestParam(value = "startDate",required = false) LocalDateTime startDate,
-            @RequestParam(value = "endDate",required = false) LocalDateTime endDate){
-
-    }*/
+            @RequestParam(value = "startDate", required = false) LocalDateTime startDate,
+            @RequestParam(value = "endDate", required = false) LocalDateTime endDate) {
+        return WeatherUtil.getWeatherDto(weatherService.getWeathersBetweenDates(startDate, endDate));
+    }
 }

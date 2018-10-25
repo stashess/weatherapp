@@ -1,6 +1,8 @@
 package com.app.weatherapp.model.entity;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -13,12 +15,18 @@ public class Weather {
     private Long id;
 
     @Column(name = "date",nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime date;
 
     @Column(name = "temp",nullable = false)
     private Double temp;
 
     public Weather() {
+    }
+
+    public Weather(LocalDateTime date, Double temp) {
+        this.date = date;
+        this.temp = temp;
     }
 
     public Long getId() {
