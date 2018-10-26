@@ -18,10 +18,10 @@ public class WeatherAppScheduler {
     @Autowired
     private WeatherService weatherService;
 
-    @Scheduled(fixedDelay = 3600000, initialDelay = 1000)
+    @Scheduled(fixedDelay = 360000, initialDelay = 1000)
     public void updateWeatherTask() {
         WeatherData currentWeatherData = weatherApiClient.getCurrentWeatherData();
         Optional<Weather> weather = WeatherUtil.getWeather(currentWeatherData);
-        weather.ifPresent(w -> weatherService.deleteAndSave(w));
+        weather.ifPresent(w -> weatherService.updateOrSave(w));
     }
 }

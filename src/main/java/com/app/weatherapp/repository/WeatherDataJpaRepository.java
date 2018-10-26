@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface WeatherDataJpaRepository extends JpaRepository<Weather,Long> {
 
@@ -24,4 +25,5 @@ public interface WeatherDataJpaRepository extends JpaRepository<Weather,Long> {
     @Query(value = "SELECT w FROM Weather w where w.date >= :startDate and w.date <= :endDate")
     List<Weather> findBetweenDates(@Param("startDate") LocalDateTime startDate,@Param("endDate") LocalDateTime endDate);
 
+    Optional<Weather> getByDate(LocalDateTime localDateTime);
 }

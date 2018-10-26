@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class WeatherRepository {
@@ -31,6 +32,10 @@ public class WeatherRepository {
 
     public List<Weather> getWeathersByDate(LocalDateTime startDate, LocalDateTime endDate){
         return weatherDataJpaRepository.findBetweenDates(startDate, endDate);
+    }
+
+    public Optional<Weather> getByDate(LocalDateTime localDateTime){
+       return weatherDataJpaRepository.getByDate(localDateTime);
     }
 
 }
