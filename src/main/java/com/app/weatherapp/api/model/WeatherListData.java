@@ -6,7 +6,7 @@ public class WeatherListData {
     private String cod;
     private Double message;
     private Integer cnt;
-    private List<WeatherData> dataList;
+    private WeatherData[] list;
 
     public WeatherListData() {
     }
@@ -35,11 +35,11 @@ public class WeatherListData {
         this.cnt = cnt;
     }
 
-    public List<WeatherData> getDataList() {
-        return dataList;
+    public WeatherData[] getList() {
+        return list;
     }
 
-    public void setDataList(List<WeatherData> dataList) {
-        this.dataList = dataList;
+    public void setList(WeatherData[] list) {
+        this.list = list;
     }
 }

@@ -17,6 +17,7 @@ public class WeatherData {
 
     @JsonDeserialize(converter = LongToLocalDateTimeConverter.class)
     private LocalDateTime dt;
+    private String dt_txt;
     private Integer visibility;
 
     private Coordinate coord;
@@ -353,5 +354,13 @@ public class WeatherData {
 
     public void setSys(System sys) {
         this.sys = sys;
+    }
+
+    public String getDt_txt() {
+        return dt_txt;
+    }
+
+    public void setDt_txt(String dt_txt) {
+        this.dt_txt = dt_txt;
     }
 }

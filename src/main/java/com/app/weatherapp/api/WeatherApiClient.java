@@ -2,6 +2,7 @@ package com.app.weatherapp.api;
 
 
 import com.app.weatherapp.api.model.WeatherData;
+import com.app.weatherapp.api.model.WeatherListData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +30,8 @@ public class WeatherApiClient {
     @Value("${weatherApi.appid}")
     private String appId;
 
-    private RestTemplate restTemplate;
-
     @Autowired
-    public WeatherApiClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+    private RestTemplate restTemplate;
 
     public ResponseEntity<WeatherData> getCurrentWeatherDataResponseEntity(){
 
@@ -47,6 +44,19 @@ public class WeatherApiClient {
 
     public WeatherData getCurrentWeatherData(){
         return getCurrentWeatherDataResponseEntity().getBody();
+    }
+
+
+    public ResponseEntity<WeatherListData> getForecastResponseEntity(){
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(weatherServiceUrl + weatherForecast)
+                .queryParam("id",cityId)
+                .queryParam("appId",appId);
+
+        return restTemplate.getForEntity(builder.build().toString(), WeatherListData.class);
+    }
+
+    public WeatherListData getWeatherForecast(){
+        return getForecastResponseEntity().getBody();
     }
 
 }
