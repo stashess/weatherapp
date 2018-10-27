@@ -3,12 +3,14 @@ package com.app.weatherapp.repository;
 import com.app.weatherapp.model.entity.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional(readOnly = true)
 public class WeatherRepository {
 
     private WeatherDataJpaRepository weatherDataJpaRepository;
@@ -22,6 +24,7 @@ public class WeatherRepository {
         weatherDataJpaRepository.deleteByDate(dateTime);
     }
 
+    @Transactional
     public Weather save(Weather weather){
         return weatherDataJpaRepository.save(weather);
     }

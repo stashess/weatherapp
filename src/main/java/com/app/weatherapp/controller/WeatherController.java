@@ -8,12 +8,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 
-@Controller
+import static com.app.weatherapp.controller.WeatherController.WEATHER_API;
+
+@RestController
+@RequestMapping(WEATHER_API)
 public class WeatherController {
+
+    public static final String WEATHER_API = "/api/weather";
 
     private WeatherService weatherService;
 
@@ -22,7 +28,7 @@ public class WeatherController {
         this.weatherService = weatherService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/getWeather", method = RequestMethod.GET)
     public Collection<WeatherDto> getWeatherByData(
             @RequestParam(value = "startDate", required = false) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) LocalDateTime endDate) {

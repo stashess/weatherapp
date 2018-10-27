@@ -13,6 +13,7 @@ import java.util.Optional;
 public interface WeatherDataJpaRepository extends JpaRepository<Weather,Long> {
 
     @Override
+    @Modifying
     Weather save(Weather weather);
 
     @Query(value = "DELETE FROM Weather where date = :date")
