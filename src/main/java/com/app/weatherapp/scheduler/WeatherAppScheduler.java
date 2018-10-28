@@ -18,7 +18,7 @@ public class WeatherAppScheduler {
     @Autowired
     private WeatherService weatherService;
 
-    @Scheduled(fixedDelay = 360000, initialDelay = 1000)
+    @Scheduled(cron =  "0 0 * * * *")
     public void updateWeatherTask() {
         WeatherData currentWeatherData = weatherApiClient.getCurrentWeatherData();
         Optional<Weather> weather = WeatherUtil.getWeather(currentWeatherData);
